@@ -16,6 +16,9 @@ apt install -y gedit
 # Browsers
 apt install -y chromium-browser
 
+# Debian version
+#apt-get install chromium chromium-l10n
+
 # Scala
 apt install -y scala
 echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
