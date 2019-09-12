@@ -33,7 +33,7 @@ apt install -y maven
 wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
 echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
 apt update
-apt install codium
+apt install -y codium
 
 # Docker
 apt install -y docker
