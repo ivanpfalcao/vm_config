@@ -30,10 +30,12 @@ apt-get install -y sbt
 apt install -y maven
 
 # VSCodium
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
-echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
-apt update
-apt install -y codium
+wget https://github.com/VSCodium/vscodium/releases/download/1.38.1/codium_1.38.1-1568285248_amd64.deb
+dpkg -i codium_1.38.1-1568285248_amd64.deb
+#wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
+#echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
+#apt update
+#apt install -y codium
 
 # Docker
 apt install -y docker
@@ -69,8 +71,10 @@ tar -xvf robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 rm robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 chmod 777 -R robo3t-1.3.1-linux-x86_64-7419c406
 
-
+#Install DBeaver
 cd /tmp
 wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 dpkg -i dbeaver-ce_latest_amd64.deb
 
+#Set showmode in vi
+echo "set showmode" >> ~/.vimrc
