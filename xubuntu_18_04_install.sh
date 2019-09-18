@@ -10,8 +10,9 @@ apt install -y openjdk-8-jdk
 apt install -y python3-dev
 apt install -y python3-pip
 
-# gedit
+# Editores
 apt install -y gedit
+apt install -y vim
 
 # Browsers
 apt install -y chromium-browser
