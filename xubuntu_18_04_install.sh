@@ -21,10 +21,12 @@ apt install -y chromium-browser
 #apt-get install chromium chromium-l10n
 
 # Scala
-apt install -y scala
-echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
-apt-key adv --keyserver hkps://keyserver.ubuntu.com:443 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-apt-get update
+#apt install -y scala
+#echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
+#apt-key adv --keyserver hkps://keyserver.ubuntu.com:443 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+#apt-get update
+https://downloads.lightbend.com/scala/2.12.2/scala-2.12.2.deb
+dpkg -i scala-2.12.2.deb
 apt-get install -y sbt
 
 # Maven
