@@ -2,6 +2,7 @@ apt update
 
 apt install -y dpkg
 apt install -y module-assistant
+apt install -y curl
 m-a prepare
 
 # Linguagens
