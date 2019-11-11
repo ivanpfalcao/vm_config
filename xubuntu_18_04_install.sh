@@ -34,8 +34,13 @@ apt-get install -y sbt
 apt install -y maven
 
 # VSCodium
-wget https://github.com/VSCodium/vscodium/releases/download/1.38.1/codium_1.38.1-1568285248_amd64.deb
-dpkg -i codium_1.38.1-1568285248_amd64.deb
+#wget https://github.com/VSCodium/vscodium/releases/download/1.38.1/codium_1.38.1-1568285248_amd64.deb
+#dpkg -i codium_1.38.1-1568285248_amd64.deb
+#rm codium_1.38.1-1568285248_amd64.deb
+wget https://github.com/VSCodium/vscodium/releases/download/1.40.0/codium_1.40.0-1573156533_amd64.deb
+dpkg -i codium_1.40.0-1573156533_amd64.deb
+rm codium_1.40.0-1573156533_amd64.deb
+
 #wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
 #echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
 #apt update
@@ -50,7 +55,12 @@ cd /opt
 wget https://archive.apache.org/dist/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz
 tar -xvf spark-2.2.1-bin-hadoop2.7.tgz
 rm spark-2.2.1-bin-hadoop2.7.tgz
-chmod 777 -R spark-2.2.1-bin-hadoop2.7
+chmod 755 -R spark-2.2.1-bin-hadoop2.7
+
+#wget https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+#tar -xvf spark-2.4.4-bin-hadoop2.7.tgz
+#rm spark-2.4.4-bin-hadoop2.7.tgz
+#chmod 755 -R spark-2.4.4-bin-hadoop2.7.tgz
 
 # Zeppelin
 cd /opt
@@ -59,26 +69,27 @@ mv zeppelin-0.8.1-bin-all.tgz /opt
 cd /opt
 tar -xvf zeppelin-0.8.1-bin-all.tgz
 rm zeppelin-0.8.1-bin-all.tgz
-chmod 777 -R zeppelin-0.8.1-bin-all
+chmod 755 -R zeppelin-0.8.1-bin-all
 
 # POSTMAN
 cd /opt
 wget https://dl.pstmn.io/download/latest/linux64
 tar -xvf linux64
 rm linux64
-chmod 777 -R Postman
+chmod 755 -R Postman
 
 #ROBO3t
 cd /opt
 wget https://download-test.robomongo.org/linux/robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 tar -xvf robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 rm robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
-chmod 777 -R robo3t-1.3.1-linux-x86_64-7419c406
+chmod 755 -R robo3t-1.3.1-linux-x86_64-7419c406
 
 #Install DBeaver
 cd /tmp
 wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 dpkg -i dbeaver-ce_latest_amd64.deb
+rm dbeaver-ce_latest_amd64.deb
 
 #Set showmode in vi
 echo "set showmode" >> ~/.vimrc
