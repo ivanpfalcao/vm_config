@@ -39,9 +39,12 @@ apt install -y maven
 #wget https://github.com/VSCodium/vscodium/releases/download/1.38.1/codium_1.38.1-1568285248_amd64.deb
 #dpkg -i codium_1.38.1-1568285248_amd64.deb
 #rm codium_1.38.1-1568285248_amd64.deb
-wget https://github.com/VSCodium/vscodium/releases/download/1.40.0/codium_1.40.0-1573156533_amd64.deb
-dpkg -i codium_1.40.0-1573156533_amd64.deb
-rm codium_1.40.0-1573156533_amd64.deb
+#wget https://github.com/VSCodium/vscodium/releases/download/1.40.0/codium_1.40.0-1573156533_amd64.deb
+#dpkg -i codium_1.40.0-1573156533_amd64.deb
+#rm codium_1.40.0-1573156533_amd64.deb
+wget https://github.com/VSCodium/vscodium/releases/download/1.40.2/codium_1.40.2-1574798581_amd64.deb
+dpkg -i codium_1.40.2-1574798581_amd64.deb
+rm codium_1.40.2-1574798581_amd64.deb
 
 #wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
 #echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
@@ -66,12 +69,12 @@ chmod 755 -R spark-2.2.1-bin-hadoop2.7
 
 # Zeppelin
 cd /opt
-wget https://archive.apache.org/dist/zeppelin/zeppelin-0.8.1/zeppelin-0.8.1-bin-all.tgz
-mv zeppelin-0.8.1-bin-all.tgz /opt
+wget https://archive.apache.org/dist/zeppelin/zeppelin-0.8.2/zeppelin-0.8.2-bin-all.tgz
+mv zeppelin-0.8.2-bin-all.tgz /opt
 cd /opt
-tar -xvf zeppelin-0.8.1-bin-all.tgz
-rm zeppelin-0.8.1-bin-all.tgz
-chmod 755 -R zeppelin-0.8.1-bin-all
+tar -xvf zeppelin-0.8.2-bin-all.tgz
+rm zeppelin-0.8.2-bin-all.tgz
+chmod 755 -R zeppelin-0.8.2-bin-all
 
 # POSTMAN
 cd /opt
@@ -85,7 +88,7 @@ cd /opt
 wget https://download-test.robomongo.org/linux/robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 tar -xvf robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 rm robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
-chmod 755 -R robo3t-1.3.1-linux-x86_64-7419c406
+chmod 755 -R robo3t-1.3.1-linux-x86_64-7419c406.tar.gz
 
 #Install DBeaver
 cd /tmp
