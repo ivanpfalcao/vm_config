@@ -12,5 +12,5 @@ export PATH=$PATH:$SPARK_HOME/bin
 #export PATH=$PATH:$ZOOKEEPER_HOME/bin
 
 # ZEPPELIN
-export ZEPPELIN_HOME=/opt/zeppelin-0.8.1-bin-all
+export ZEPPELIN_HOME=/opt/zeppelin-0.8.2-bin-all
 export PATH=$PATH:$ZEPPELIN_HOME/bin
