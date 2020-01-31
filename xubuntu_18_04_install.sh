@@ -28,7 +28,7 @@ apt install -y chromium-browser
 #apt-get update
 wget https://downloads.lightbend.com/scala/2.12.2/scala-2.12.2.deb
 dpkg -i scala-2.12.2.deb
-rm scala-2.12.2.deb^
+rm scala-2.12.2.deb
 
 apt-get install -y sbt
 
