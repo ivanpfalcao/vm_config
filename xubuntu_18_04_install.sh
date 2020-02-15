@@ -43,7 +43,7 @@ apt install -y maven
 #dpkg -i codium_1.40.0-1573156533_amd64.deb
 #rm codium_1.40.0-1573156533_amd64.deb
 #wget https://github.com/VSCodium/vscodium/releases/download/1.40.2/codium_1.40.2-1574798581_amd64.deb
-wget -O vscodium.deb https://github.com/VSCodium/vscodium/releases/download/1.41.1/codium_1.41.1-1576787344_amd64.deb
+wget -O vscodium.deb https://github.com/VSCodium/vscodium/releases/download/1.42.1/codium_1.42.1-1581651960_amd64.deb
 dpkg -i vscodium.deb
 rm vscodium.deb
 
