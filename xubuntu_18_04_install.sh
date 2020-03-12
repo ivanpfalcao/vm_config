@@ -102,3 +102,6 @@ snap install notepad-plus-plus
 
 #Set showmode in vi
 echo "set showmode" >> ~/.vimrc
+
+#Noronha Theme
+sudo pip3 install sphinx_rtd_theme
