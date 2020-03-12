@@ -105,3 +105,14 @@ echo "set showmode" >> ~/.vimrc
 
 #Noronha Theme
 sudo pip3 install sphinx_rtd_theme
+
+# Docker without sudo
+groupadd docker
+usermod -aG docker $USER
+
+# Start Docker Swarm
+docker swarm init
+
+# Anaconda
+wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+bash Anaconda3-2020.02-Linux-x86_64.sh -b -p $HOME/anaconda
