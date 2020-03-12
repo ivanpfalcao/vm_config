@@ -10,6 +10,7 @@ apt install -y build-essential
 apt install -y openjdk-8-jdk
 apt install -y python3-dev
 apt install -y python3-pip
+apt install -y python-sphinx
 
 # Editores
 apt install -y gedit
