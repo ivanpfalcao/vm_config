@@ -103,12 +103,14 @@ snap install notepad-plus-plus
 #Set showmode in vi
 echo "set showmode" >> ~/.vimrc
 
-#Noronha Theme
+#Noronha Things
 sudo pip3 install sphinx_rtd_theme
+pip3 install --upgrade requests
 
 # Docker without sudo
 groupadd docker
 usermod -aG docker $USER
+newgrp docker
 
 # Start Docker Swarm
 docker swarm init
