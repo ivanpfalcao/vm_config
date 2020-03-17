@@ -44,14 +44,14 @@ apt install -y maven
 #dpkg -i codium_1.40.0-1573156533_amd64.deb
 #rm codium_1.40.0-1573156533_amd64.deb
 #wget https://github.com/VSCodium/vscodium/releases/download/1.40.2/codium_1.40.2-1574798581_amd64.deb
-wget -O vscodium.deb https://github.com/VSCodium/vscodium/releases/download/1.42.1/codium_1.42.1-1581651960_amd64.deb
-dpkg -i vscodium.deb
-rm vscodium.deb
+#wget -O vscodium.deb https://github.com/VSCodium/vscodium/releases/download/1.42.1/codium_1.42.1-1581651960_amd64.deb
+#dpkg -i vscodium.deb
+#rm vscodium.deb
 
-#wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
-#echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
-#apt update
-#apt install -y codium
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
+echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list
+apt update
+apt install -y codium
 
 # Docker
 apt install -y docker
