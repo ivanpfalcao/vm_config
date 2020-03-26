@@ -118,3 +118,8 @@ docker swarm init
 # Anaconda
 wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 bash Anaconda3-2020.02-Linux-x86_64.sh -b -p $HOME/anaconda
+
+# microk8s
+snap install microk8s --classic
+sudo microk8s.enable dns dashboard registry
+alias microk8s.kubectl kubectl
