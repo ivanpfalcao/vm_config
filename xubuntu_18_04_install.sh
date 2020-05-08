@@ -11,6 +11,7 @@ apt install -y openjdk-8-jdk
 apt install -y python3-dev
 apt install -y python3-pip
 apt install -y python-sphinx
+apt install -y python3-venv
 
 # Editores
 apt install -y gedit
