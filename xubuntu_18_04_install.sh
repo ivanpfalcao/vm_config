@@ -60,7 +60,7 @@ apt install -y docker-compose
 
 # Spark
 cd /opt
-SPARK_VERSION="2.2.1"
+SPARK_VERSION="2.2.0"
 SPARK_HADOOP_VERSION="-bin-hadoop2.7"
 wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
 tar -xvf spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
@@ -105,13 +105,19 @@ snap install notepad-plus-plus
 echo "set showmode" >> ~/.vimrc
 
 #Noronha Things
-sudo pip3 install sphinx_rtd_theme
+pip3 install sphinx_rtd_theme
 pip3 install --upgrade requests
 
 # Docker without sudo
+if [ "${SUDO_USER}" = "" ]; then
+    EXEC_USER="${USER}"
+else
+    EXEC_USER="${SUDO_USER}"
+fi
+
 # groupadd docker
-# usermod -aG docker $USER
-# newgrp docker
+usermod -aG docker $EXEC_USER
+newgrp docker
 
 # Start Docker Swarm
 docker swarm init
