@@ -4,7 +4,11 @@ export JRE_HOME=$JAVA_HOME/jre
 export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin
 
 # SPARK
-export SPARK_HOME=/opt/spark-2.2.1-bin-hadoop2.7
+#export SPARK_HOME=/opt/spark-2.2.1-bin-hadoop2.7
+#export PATH=$PATH:$SPARK_HOME/bin
+
+# SPARK
+export SPARK_HOME=/opt/spark-2.2.0-bin-hadoop2.7
 export PATH=$PATH:$SPARK_HOME/bin
 
 # ZOOKEEPER 
