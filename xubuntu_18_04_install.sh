@@ -106,7 +106,10 @@ echo "set showmode" >> ~/.vimrc
 
 #Noronha Things
 pip3 install sphinx_rtd_theme
-pip3 install --upgrade requests
+pip3 install jupyter
+pip3 install ipython
+pip3 install spylon-kernel
+python3 -m spylon_kernel install
 
 # Docker without sudo
 if [ "${SUDO_USER}" = "" ]; then
