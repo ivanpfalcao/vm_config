@@ -10,6 +10,11 @@ export PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/jre/bin
 # SPARK
 export SPARK_HOME=/opt/spark-2.2.0-bin-hadoop2.7
 export PATH=$PATH:$SPARK_HOME/bin
+export IPYTHON=1
+export PYSPARK_PYTHON=/usr/bin/python3
+export PYSPARK_DRIVER_PYTHON=ipython3
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
+
 
 # ZOOKEEPER 
 #export ZOOKEEPER_HOME=/opt/apache-zookeeper-3.5.5-bin
