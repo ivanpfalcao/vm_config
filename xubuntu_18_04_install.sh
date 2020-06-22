@@ -230,6 +230,7 @@ install_microk8s() {
 }
 
 ubuntu_install
+set_exec_user
 configure_docker
 #install_vscodium
 install_vscode
@@ -237,7 +238,6 @@ install_scala
 install_spark
 install_postman
 install_dbeaver
-set_exec_user
 install_miniconda
 install_python_things
 
