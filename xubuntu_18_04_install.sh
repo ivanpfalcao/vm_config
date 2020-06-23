@@ -40,6 +40,13 @@ ubuntu_install() {
     echo 'export JRE_HOME=${JAVA_HOME}/jre' >> ${PATH_SUB_FILE}
     echo 'export PATH=$PATH:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin' >> ${PATH_SUB_FILE}
     
+    # Set terminal title
+    echo 'set-title(){' >> ${PATH_SUB_FILE}
+    echo '  ORIG=$PS1' >> ${PATH_SUB_FILE}
+    echo '  TITLE="\e]2;$@\a"' >> ${PATH_SUB_FILE}
+    echo '  PS1=${ORIG}${TITLE}' >> ${PATH_SUB_FILE}
+    echo '}' >> ${PATH_SUB_FILE}
+    
     # Debian version
     #apt-get install chromium chromium-l10n
 }
