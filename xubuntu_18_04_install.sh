@@ -165,8 +165,10 @@ install_spark() {
     PATH_SUB_FILE="/etc/bash.bashrc"
     sed -i "s+export SPARK_HOME=/opt/spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}++g" ${PATH_SUB_FILE}
     sed -i 's+export PATH=$PATH:$SPARK_HOME/bin++g' ${PATH_SUB_FILE}
+    sed -i 's+export PYSPARK_PYTHON=/usr/bin/python3++g' ${PATH_SUB_FILE}
     echo "export SPARK_HOME=/opt/spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}" >> ${PATH_SUB_FILE}
-    echo 'export PATH=$PATH:$SPARK_HOME/bin' >> ${PATH_SUB_FILE}    
+    echo 'export PATH=$PATH:$SPARK_HOME/bin' >> ${PATH_SUB_FILE}
+    echo 'export PYSPARK_PYTHON=/usr/bin/python3' >> ${PATH_SUB_FILE}
 }
 
 
