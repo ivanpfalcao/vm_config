@@ -26,8 +26,8 @@ ubuntu_install() {
     apt install -y chromium-browser
 
     # Docker
-    apt install -y docker
-    apt install -y docker-compose
+    #apt install -y docker
+    #apt install -y docker-compose
 
     # Notepad++
     snap install notepad-plus-plus
@@ -239,6 +239,29 @@ install_microk8s() {
     alias microk8s.kubectl kubectl
 }
 
+install_docker()
+{
+    echo "Starting installing docker"
+    DOCKER_INST_FILE=${TMP_DIR}/install_docker.sh
+    if [ -f "${DOCKER_INST_FILE}" ]; then
+        echo "${DOCKER_INST_FILE} exist. Not Downloading it"
+    else 
+        #curl -fsSL https://get.docker.com -o ${DOCKER_INST_FILE}
+        wget -O ${DOCKER_INST_FILE} https://get.docker.com
+    fi
+    sh ${DOCKER_INST_FILE}
+
+    case "$(echo "${OS_NAME}" | tr a-z A-Z)" in
+        "CENTOS LINUX"|"CENTOS"|"REDHAT")
+            systemctl start docker
+            systemctl enable docker
+            ;;
+    esac    
+
+    echo "Docker successfully installed"
+}
+
+
 ubuntu_install
 set_exec_user
 #install_vscodium
@@ -249,5 +272,6 @@ install_postman
 install_dbeaver
 install_miniconda
 install_python_things
+install_docker
 configure_docker
 
