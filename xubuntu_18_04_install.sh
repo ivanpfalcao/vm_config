@@ -261,6 +261,22 @@ install_docker()
     echo "Docker successfully installed"
 }
 
+install_minikube()
+{
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+    dpkg -i minikube_latest_amd64.deb
+    minikube start
+}
+
+install_kubectl()
+{
+    apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    apt-get update
+    apt-get install -y kubectl
+}
+
 
 ubuntu_install
 set_exec_user
@@ -273,5 +289,7 @@ install_dbeaver
 install_miniconda
 install_python_things
 install_docker
+install_minikube
+install_kubectl
 configure_docker
 
