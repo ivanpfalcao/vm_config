@@ -4,7 +4,25 @@ ubuntu_install() {
     apt install -y dpkg
     apt install -y module-assistant
     apt install -y curl
+
+    
+
     m-a prepare
+
+
+    # Ambari dependencies
+    apt install -y tar
+    apt install -y sed
+    apt install -y vim
+    apt install -y maven
+    apt install -y wget
+    # apt install -y postgresql
+    # apt install -y postgresql-contrib
+    apt install -y openssh-server
+    apt install -y ntp
+    update-rc.d ntp defaults
+    apt-get install -y gnupg2 
+    service ssh start
 
     # Linguagens
     apt install -y build-essential
@@ -23,14 +41,14 @@ ubuntu_install() {
     apt install -y vim
 
     # Browsers
-    apt install -y chromium-browser
+    #apt install -y chromium-browser
 
     # Docker
     #apt install -y docker
     #apt install -y docker-compose
 
     # Notepad++
-    snap install notepad-plus-plus
+    # snap install notepad-plus-plus
 
     #Set showmode in vi
     echo "set showmode" >> ~/.vimrc
@@ -277,23 +295,6 @@ install_kubectl()
     apt-get install -y kubectl
 }
 
-install_ambari_dep() {
-    echo "Installing Ambari Dependencies"
-    apt-get install -y openjdk-8-jdk
-    apt-get install -y tar
-    apt-get install -y sed
-    apt-get install -y vim
-    apt-get install -y maven
-    apt-get install -y wget
-    # apt-get install -y postgresql
-    # apt-get install -y postgresql-contrib
-    apt-get install -y openssh-server
-    apt-get install -y ntp
-    update-rc.d ntp defaults
-    apt-get install -y gnupg2 
-    service ssh start
-    echo "Ambari Dependencies Installed"
-}
 
 install_ambari()
 {
@@ -326,7 +327,7 @@ install_ambari()
 
 configure_ssh() 
 {
-    AMBARI_USER="user"
+    AMBARI_USER="hdp"
     ssh-keygen -b 2048 -t rsa -f "/root/.ssh/id_rsa" -N ""
 
     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
@@ -334,23 +335,19 @@ configure_ssh()
     chmod 700 /root/.ssh
     chmod 600 /root/.ssh/authorized_keys
 
-    mkdir -p /${AMBARI_USER}/.ssh
-    cat /root/.ssh/id_rsa.pub >> /${AMBARI_USER}/.ssh/authorized_keys
-    chmod 700 /${AMBARI_USER}/.ssh
-    chmod 600 /${AMBARI_USER}/.ssh/authorized_keys
     ssh -oStrictHostKeyChecking=no 127.0.0.1 'exit'
     ssh -oStrictHostKeyChecking=no localhost 'exit'
+    ssh -oStrictHostKeyChecking=no $(hostname -f) 'exit'
 }
 
 
-# ubuntu_install
-# set_exec_user
-# install_vscode
+ubuntu_install
+set_exec_user
+install_vscode
 # install_scala
-# install_miniconda
-# install_python_things
+install_miniconda
+install_python_things
 
 configure_ssh
-install_ambari_dep
 install_ambari
 
