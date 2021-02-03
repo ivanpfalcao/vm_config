@@ -16,10 +16,11 @@ ubuntu_install() {
     apt install -y vim
     apt install -y maven
     apt install -y wget
-    # apt install -y postgresql
-    # apt install -y postgresql-contrib
+    apt install -y postgresql
+    apt install -y postgresql-contrib
     apt install -y openssh-server
     apt install -y ntp
+    apt install -y libpostgresql-jdbc-java
     update-rc.d ntp defaults
     apt-get install -y gnupg2 
     service ssh start
@@ -307,19 +308,9 @@ install_ambari()
 
     wget -O /etc/apt/sources.list.d/ambari.list http://public-repo-1.hortonworks.com/ambari/ubuntu18/2.x/updates/2.6.2.45/ambari.list
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com B9733A7A07513CAD
-    apt-get update
-    apt-get install -y ambari-agent
-    apt-get install -y ambari-server
-
-    ambari-server setup -j "${JAVA_HOME}" \
-        -s \
-        --database="postgres" \
-        --databasehost=127.0.0.1 \
-        --databaseport=5432 \
-        --databasename="${AMBARI_DATABASE}" \
-        --postgresschema="${AMBARI_SCHEMA}" \
-        --databaseusername="${AMBARI_USER}" \
-        --databasepassword="${AMBARI_PASSWORD}"    
+    apt update
+    apt install -y ambari-agent
+    apt install -y ambari-server  
     echo "Ambari Installed"
     
 }
@@ -340,14 +331,63 @@ configure_ssh()
     ssh -oStrictHostKeyChecking=no $(hostname -f) 'exit'
 }
 
+ambari_setup()
+{
+    ambari-server setup -j "${JAVA_HOME}" \
+        -s \
+        --database="postgres" \
+        --databasehost=127.0.0.1 \
+        --databaseport=5432 \
+        --databasename="${AMBARI_DATABASE}" \
+        --postgresschema="${AMBARI_SCHEMA}" \
+        --databaseusername="${AMBARI_USER}" \
+        --databasepassword="${AMBARI_PASSWORD}"
 
-ubuntu_install
-set_exec_user
-install_vscode
-# install_scala
-install_miniconda
-install_python_things
+    ambari-server setup \
+        --jdbc-db=postgres \
+        --jdbc-driver=/usr/share/java/postgresql-jdbc4.jar
+}
 
-configure_ssh
-install_ambari
+ambari_postgresql_config()
+{
+    service postgresql start 
+    sudo -u postgres psql --command "CREATE USER root WITH SUPERUSER PASSWORD '';" 
+    sudo -u postgres psql --command "CREATE DATABASE ${AMBARI_DATABASE};" 
+    sudo -u postgres psql --command "CREATE USER ${AMBARI_USER} WITH PASSWORD '${AMBARI_PASSWORD}';" 
+    sudo -u postgres psql --command "GRANT ALL PRIVILEGES ON DATABASE ${AMBARI_DATABASE} TO ${AMBARI_USER};" 
+    sudo -u postgres psql -d ${AMBARI_DATABASE} --command "CREATE SCHEMA ${AMBARI_SCHEMA} AUTHORIZATION ${AMBARI_USER};" 
+    sudo -u postgres psql -d ${AMBARI_DATABASE} --command "ALTER SCHEMA ${AMBARI_SCHEMA} OWNER TO ${AMBARI_USER};" 
+    sudo -u postgres psql -d ${AMBARI_DATABASE} --command "ALTER ROLE ${AMBARI_USER} SET search_path to '${AMBARI_SCHEMA}', 'public';"   
+    export PGPASSWORD="${AMBARI_PASSWORD}"; psql -d ${AMBARI_DATABASE} -U ${AMBARI_USER} -f /var/lib/ambari-server/resources/Ambari-DDL-Postgres-CREATE.sql 
+    sudo -u postgres psql --command "CREATE DATABASE ${HIVE_DATABASE};" 
+    sudo -u postgres psql --command "CREATE USER ${HIVE_USER} WITH PASSWORD '${HIVE_PASSWORD}';" 
+    sudo -u postgres psql --command "GRANT ALL PRIVILEGES ON DATABASE ${HIVE_DATABASE} TO ${HIVE_USER};" 
+    sudo -u postgres psql -d ${HIVE_DATABASE} --command "CREATE SCHEMA ${HIVE_SCHEMA} AUTHORIZATION ${HIVE_USER};" 
+    sudo -u postgres psql -d ${HIVE_DATABASE} --command "ALTER SCHEMA ${HIVE_SCHEMA} OWNER TO ${HIVE_USER};" 
+    sudo -u postgres psql -d ${HIVE_DATABASE} --command "ALTER ROLE ${HIVE_USER} SET search_path to '${HIVE_SCHEMA}', 'public';"
+}
+
+
+AMBARI_USER=ambari
+AMBARI_PASSWORD='ambari'
+AMBARI_DATABASE=ambari
+AMBARI_SCHEMA=ambari
+
+HIVE_USER=hive
+HIVE_PASSWORD='hive'
+HIVE_DATABASE=hive
+HIVE_SCHEMA=hive
+
+
+
+# ubuntu_install
+# set_exec_user
+# install_vscode
+# # install_scala
+# install_miniconda
+# install_python_things
+
+# configure_ssh
+ambari_postgresql_config
+# install_ambari
 
