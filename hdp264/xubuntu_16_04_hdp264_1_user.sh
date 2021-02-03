@@ -385,17 +385,18 @@ HIVE_SCHEMA=hive
 
 
 
-# ubuntu_install
-# set_exec_user
-# install_vscode
+ubuntu_install
+set_exec_user
+install_vscode
 # # install_scala
-# install_miniconda
-# install_python_things
+install_miniconda
+install_python_things
 
-# configure_ssh
-ambari_postgresql_config
-# install_ambari
+#configure_ssh
+#ambari_postgresql_config
+#install_ambari
 
 # hdfs -> config -> Advanced -> Custom core-site -> hadoop.proxyuser.hive.hosts=*
+# hdfs dfsadmin -safemode leave
 # beeline -u "jdbc:hive2://127.0.0.1:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2"
 
