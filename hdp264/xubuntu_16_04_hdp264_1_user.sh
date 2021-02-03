@@ -1,3 +1,5 @@
+BASEDIR="$( cd "$( dirname "${0}" )" && pwd )"
+
 ubuntu_install() {
     apt update
 
@@ -350,7 +352,8 @@ ambari_setup()
 
 ambari_postgresql_config()
 {
-    service postgresql start 
+    cp ${BASEDIR}/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+    service postgresql restart 
     sudo -u postgres psql --command "CREATE USER root WITH SUPERUSER PASSWORD '';" 
     sudo -u postgres psql --command "CREATE DATABASE ${AMBARI_DATABASE};" 
     sudo -u postgres psql --command "CREATE USER ${AMBARI_USER} WITH PASSWORD '${AMBARI_PASSWORD}';" 
@@ -365,6 +368,8 @@ ambari_postgresql_config()
     sudo -u postgres psql -d ${HIVE_DATABASE} --command "CREATE SCHEMA ${HIVE_SCHEMA} AUTHORIZATION ${HIVE_USER};" 
     sudo -u postgres psql -d ${HIVE_DATABASE} --command "ALTER SCHEMA ${HIVE_SCHEMA} OWNER TO ${HIVE_USER};" 
     sudo -u postgres psql -d ${HIVE_DATABASE} --command "ALTER ROLE ${HIVE_USER} SET search_path to '${HIVE_SCHEMA}', 'public';"
+
+    
 }
 
 
@@ -390,4 +395,7 @@ HIVE_SCHEMA=hive
 # configure_ssh
 ambari_postgresql_config
 # install_ambari
+
+# hdfs -> config -> Advanced -> Custom core-site -> hadoop.proxyuser.hive.hosts=*
+# beeline -u "jdbc:hive2://127.0.0.1:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2"
 
