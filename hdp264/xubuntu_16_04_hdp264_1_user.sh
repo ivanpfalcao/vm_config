@@ -398,5 +398,5 @@ install_python_things
 
 # hdfs -> config -> Advanced -> Custom core-site -> hadoop.proxyuser.hive.hosts=*
 # hdfs dfsadmin -safemode leave
-# beeline -u "jdbc:hive2://127.0.0.1:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2"
+# beeline -n hdp -u "jdbc:hive2://127.0.0.1:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2"
 
