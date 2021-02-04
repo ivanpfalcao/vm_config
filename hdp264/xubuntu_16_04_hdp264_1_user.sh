@@ -335,6 +335,7 @@ configure_ssh()
 
 ambari_setup()
 {
+    echo 'export HDP_VERSION=\"2.6.4\"' >> "/etc/bash.bashrc"
     ambari-server setup -j "${JAVA_HOME}" \
         -s \
         --database="postgres" \
