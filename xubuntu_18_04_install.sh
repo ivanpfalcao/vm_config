@@ -72,7 +72,7 @@ install_miniconda()
     CONDA_GROUP="${MINICONDA_GROUP}"    
     TMP_DIR="/tmp"
     
-    MINICONDA_FILE="Miniconda3-py37_4.8.2-Linux-x86_64.sh"
+    MINICONDA_FILE="Miniconda3-py39_4.9.2-Linux-x86_64.sh"
     MINICONDA_FILE_PATH="${TMP_DIR}/${MINICONDA_FILE}"
     if [ -f "${MINICONDA_FILE_PATH}" ]; then
         echo "${MINICONDA_FILE_PATH} exist. Not Downloading it"
