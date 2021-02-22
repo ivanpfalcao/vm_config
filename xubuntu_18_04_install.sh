@@ -277,6 +277,14 @@ install_kubectl()
     apt-get install -y kubectl
 }
 
+install_vim()
+{
+    git clone https://github.com/vim/vim.git
+    cd vim/src
+    make
+    sudo make install
+}
+
 
 ubuntu_install
 set_exec_user
