@@ -336,6 +336,12 @@ configure_ssh()
 ambari_setup()
 {
     echo 'export HDP_VERSION=\"2.6.4\"' >> "/etc/bash.bashrc"
+    echo 'export HADOOP_HOME=\"/usr/hdp/2.6.0.3-8/hadoop\"' >> "/etc/bash.bashrc"
+    echo 'export ZOOKEEPER_HOME=\"/usr/hdp/current/zookeeper-client\"' >> "/etc/bash.bashrc"
+    echo 'export HCAT_HOME=\"/usr/hdp/current/\"' >> "/etc/bash.bashrc"
+    echo 'export ACCUMULO_HOME=\"/usr/hdp/current/\"' >> "/etc/bash.bashrc"
+    echo 'export HBASE_HOME=\"/usr/hdp/2.6.0.3-8/hbase\"' >> "/etc/bash.bashrc"
+
     ambari-server setup -j "${JAVA_HOME}" \
         -s \
         --database="postgres" \
