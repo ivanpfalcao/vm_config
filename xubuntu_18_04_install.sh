@@ -30,7 +30,7 @@ ubuntu_install() {
     #apt install -y docker-compose
 
     # Notepad++
-    snap install notepad-plus-plus
+    # snap install notepad-plus-plus
 
     #Set showmode in vi
     echo "set showmode" >> ~/.vimrc
@@ -292,12 +292,12 @@ set_exec_user
 install_vscode
 install_scala
 install_spark
-install_postman
-install_dbeaver
+# install_postman
+# install_dbeaver
 install_miniconda
 install_python_things
 install_docker
-install_minikube
-install_kubectl
+# install_minikube
+# install_kubectl
 configure_docker
 
