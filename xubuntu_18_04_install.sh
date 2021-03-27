@@ -23,7 +23,7 @@ ubuntu_install() {
     apt install -y vim
 
     # Browsers
-    apt install -y chromium-browser
+    # apt install -y chromium-browser
 
     # Docker
     #apt install -y docker
