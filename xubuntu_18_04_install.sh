@@ -148,14 +148,10 @@ install_vscode() {
     apt-get install -y code    
 }
 
-
-
-
-
 install_spark() {
     # Spark
     cd /opt
-    SPARK_VERSION="2.2.0"
+    SPARK_VERSION="2.4.1"
     SPARK_HADOOP_VERSION="-bin-hadoop2.7"
     wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
     tar -xvf spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
@@ -210,11 +206,6 @@ install_dbeaver() {
     dpkg -i dbeaver-ce_latest_amd64.deb
     rm dbeaver-ce_latest_amd64.deb
 }
-
-
-
-
-
 
 configure_docker() {
     # groupadd docker
@@ -297,7 +288,7 @@ install_spark
 install_miniconda
 install_python_things
 install_docker
-# install_minikube
-# install_kubectl
+install_minikube
+install_kubectl
 configure_docker
 
