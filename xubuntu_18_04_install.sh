@@ -276,7 +276,7 @@ install_vim()
     sudo make install
 }
 
-
+# apt purge pidgin libreoffice-* gnome-mines gnome-sudoku parole thunderbird* xfburn
 ubuntu_install
 set_exec_user
 #install_vscodium
