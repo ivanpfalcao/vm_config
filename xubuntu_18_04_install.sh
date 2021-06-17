@@ -276,6 +276,26 @@ install_vim()
     sudo make install
 }
 
+install_groot()
+{
+    echo '' > /etc/sudo_lecture.txt
+    echo '     [00;32m  \^V//' >> /etc/sudo_lecture.txt
+    echo '     [00;33m  |[01;37m. [01;37m.[00;33m|   [01;34m I AM (G)ROOT!' >> /etc/sudo_lecture.txt
+    echo '     [00;32m- [00;33m\ - / [00;32m_' >> /etc/sudo_lecture.txt
+    echo '     [00;33m \_| |_/' >> /etc/sudo_lecture.txt
+    echo '     [00;33m   \ \' >> /etc/sudo_lecture.txt
+    echo '     [00;31m __[00;33m/[00;31m_[00;33m/[00;31m__' >> /etc/sudo_lecture.txt
+    echo '     [00;31m|_______|  [00;37m With great power comes great responsibility.' >> /etc/sudo_lecture.txt
+    echo '     [00;31m \     /   [00;37m Use sudo wisely.' >> /etc/sudo_lecture.txt
+    echo '     [00;31m  \___/' >> /etc/sudo_lecture.txt
+    echo '[0m' >> /etc/sudo_lecture.txt
+    sed -i 's+Defaults       lecture=always++g' /etc/sudoers
+    sed -i 's+Defaults       lecture_file=/etc/sudo_lecture.txt++g' /etc/sudoers
+    echo "Defaults       lecture=always" >> /etc/sudoers
+    echo "Defaults       lecture_file=/etc/sudo_lecture.txt" >> /etc/sudoers
+}
+
+install_groot
 # apt purge pidgin libreoffice-* gnome-mines gnome-sudoku parole thunderbird* xfburn
 ubuntu_install
 set_exec_user
@@ -291,4 +311,7 @@ install_docker
 install_minikube
 install_kubectl
 configure_docker
+
+
+
 
