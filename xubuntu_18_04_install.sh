@@ -13,6 +13,7 @@ ubuntu_install() {
     apt install -y python3-pip
     apt install -y python-sphinx
     apt install -y python3-venv
+    apt install -y terminator
 
     # Maven
     apt install -y maven
