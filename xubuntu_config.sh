@@ -52,6 +52,31 @@ ubuntu_install() {
     #apt-get install chromium chromium-l10n
 }
 
+install_jmeter() {
+    TMP_DIR="/tmp"
+    JMETER_FILE="apache-jmeter-5.4.3.tgz"
+    JMETER_FILE_PATH="${TMP_DIR}/${JMETER_FILE}"
+    JMETER_HOME="/opt/apache-jmeter"
+
+    if [ -f "${JMETER_FILE_PATH}" ]; then
+        echo "${JMETER_FILE_PATH} exist. Not Downloading it"
+    else 
+        wget -O ${JMETER_FILE_PATH} https://dlcdn.apache.org/jmeter/binaries/${JMETER_FILE}
+    fi
+
+    rm -rf "${JMETER_HOME}"
+    mkdir -p "${JMETER_HOME}"
+    tar -xvf "${JMETER_FILE_PATH}" -C "${JMETER_HOME}" --strip-components=1
+    chmod 775 -R "${JMETER_HOME}"
+
+    PATH_SUB_FILE="/etc/bash.bashrc"
+
+    sed -i "s+export JMETER_HOME=${JMETER_HOME}++g" "${PATH_SUB_FILE}"
+    sed -i 's+export PATH=${JMETER_HOME}/bin:${PATH}++g' "${PATH_SUB_FILE}"
+    echo "export JMETER_HOME=${JMETER_HOME}" >> "${PATH_SUB_FILE}"
+    echo 'export PATH=${JMETER_HOME}/bin:${PATH}' >> "${PATH_SUB_FILE}"
+}
+
 # Get user ID
 set_exec_user()
 {
@@ -154,7 +179,7 @@ install_vscode() {
 install_spark() {
     # Spark
     cd /opt
-    SPARK_VERSION="2.4.1"
+    SPARK_VERSION="3.2.1"
     SPARK_HADOOP_VERSION="-bin-hadoop2.7"
     wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
     tar -xvf spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
@@ -297,10 +322,11 @@ install_groot
 # apt purge pidgin libreoffice-* gnome-mines gnome-sudoku parole thunderbird* xfburn
 ubuntu_install
 set_exec_user
-#install_vscodium
+# install_vscodium
 install_vscode
 install_scala
 install_spark
+install_jmeter
 # install_postman
 install_dbeaver
 install_miniconda
@@ -309,6 +335,8 @@ install_docker
 install_minikube
 install_kubectl
 configure_docker
+
+
 
 
 
