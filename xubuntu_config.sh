@@ -318,6 +318,15 @@ install_groot()
     echo "Defaults       lecture_file=/etc/sudo_lecture.txt" >> /etc/sudoers
 }
 
+install_istio()
+{   
+    curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.16.1 TARGET_ARCH=x86_64 sh -
+    mv istio-1.16.1 /opt/istio-1.16.1
+    chmod 775 -R /opt/istio-1.16.1
+    PATH_SUB_FILE="/etc/bash.bashrc"
+    echo "export PATH=${PATH}:/opt/istio-1.16.1/bin" >> ${PATH_SUB_FILE}    
+}
+
 install_groot
 # apt purge pidgin libreoffice-* gnome-mines gnome-sudoku parole thunderbird* xfburn
 ubuntu_install
@@ -325,14 +334,15 @@ set_exec_user
 # install_vscodium
 install_vscode
 install_scala
-install_spark
-install_jmeter
+#install_spark
+#install_jmeter
 # install_postman
-install_dbeaver
+#install_dbeaver
 install_miniconda
-install_python_things
+#install_python_things
 install_docker
-install_minikube
+#install_istio
+#install_minikube
 install_kubectl
 configure_docker
 
