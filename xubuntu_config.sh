@@ -98,7 +98,8 @@ install_miniconda()
     CONDA_GROUP="${MINICONDA_GROUP}"    
     TMP_DIR="/tmp"
     
-    MINICONDA_FILE="Miniconda3-py39_4.12.0-Linux-x86_64.sh"
+    #MINICONDA_FILE="Miniconda3-py39_4.12.0-Linux-x86_64.sh"
+    MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
     MINICONDA_FILE_PATH="${TMP_DIR}/${MINICONDA_FILE}"
     if [ -f "${MINICONDA_FILE_PATH}" ]; then
         echo "${MINICONDA_FILE_PATH} exist. Not Downloading it"
@@ -275,6 +276,37 @@ install_docker()
     echo "Docker successfully installed"
 }
 
+wsl_docker()
+{
+    echo "Starting installing docker"
+    apt update && sudo apt upgrade
+    apt remove docker docker-engine docker.io containerd runc
+    apt-get install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release   
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+    "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null  
+
+        echo "Docker successfully installed"
+
+    apt-get update
+    apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    usermod -aG docker "$EXEC_USER"
+    echo 1 | update-alternatives --config iptables
+}
+
+install_k3d()
+{
+    wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+}
+
+
 install_minikube()
 {
     curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
@@ -340,11 +372,13 @@ install_scala
 #install_dbeaver
 install_miniconda
 #install_python_things
-install_docker
+#install_docker
+wsl_docker
+install_k3d
 #install_istio
 #install_minikube
 install_kubectl
-configure_docker
+#configure_docker
 
 
 
