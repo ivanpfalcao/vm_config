@@ -281,7 +281,7 @@ wsl_docker()
     echo "Starting installing docker"
     apt update && sudo apt upgrade
     apt remove docker docker-engine docker.io containerd runc
-    apt-get install \
+    apt-get install -y \
         apt-transport-https \
         ca-certificates \
         curl \
@@ -296,7 +296,7 @@ wsl_docker()
         echo "Docker successfully installed"
 
     apt-get update
-    apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
     usermod -aG docker "$EXEC_USER"
     echo 1 | update-alternatives --config iptables
 }
@@ -359,13 +359,20 @@ install_istio()
     echo "export PATH=${PATH}:/opt/istio-1.16.1/bin" >> ${PATH_SUB_FILE}    
 }
 
+install_helm()
+{   
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    chmod 700 get_helm.sh
+    ./get_helm.sh   
+}
+
 install_groot
 # apt purge pidgin libreoffice-* gnome-mines gnome-sudoku parole thunderbird* xfburn
 ubuntu_install
 set_exec_user
 # install_vscodium
-install_vscode
-install_scala
+#install_vscode
+#install_scala
 #install_spark
 #install_jmeter
 # install_postman
@@ -375,6 +382,7 @@ install_miniconda
 #install_docker
 wsl_docker
 install_k3d
+install_helm
 #install_istio
 #install_minikube
 install_kubectl
