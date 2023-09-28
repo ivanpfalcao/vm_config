@@ -321,6 +321,7 @@ install_kubectl()
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
     apt-get update
     apt-get install -y kubectl
+    echo "source <(kubectl completion bash)" >> /etc/bash.bashrc
 }
 
 install_vim()
