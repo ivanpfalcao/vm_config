@@ -180,8 +180,8 @@ install_vscode() {
 install_spark() {
     # Spark
     cd /opt
-    SPARK_VERSION="3.2.1"
-    SPARK_HADOOP_VERSION="-bin-hadoop2.7"
+    SPARK_VERSION="3.5.1"
+    SPARK_HADOOP_VERSION="-bin-hadoop3"
     wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
     tar -xvf spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
     rm spark-${SPARK_VERSION}${SPARK_HADOOP_VERSION}.tgz
@@ -316,12 +316,16 @@ install_minikube()
 
 install_kubectl()
 {
-    apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-    apt-get update
-    apt-get install -y kubectl
-    echo "source <(kubectl completion bash)" >> /etc/bash.bashrc
+    #apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl
+    #curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    #echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    #apt-get update
+    #apt-get install -y kubectl
+    #echo "source <(kubectl completion bash)" >> /etc/bash.bashrc
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x kubectl
+    mkdir -p ~/.local/bin
+    mv ./kubectl ~/.local/bin/kubectl    
 }
 
 install_vim()
@@ -385,7 +389,7 @@ wsl_docker
 install_k3d
 install_helm
 #install_istio
-#install_minikube
+install_minikube
 install_kubectl
 #configure_docker
 
